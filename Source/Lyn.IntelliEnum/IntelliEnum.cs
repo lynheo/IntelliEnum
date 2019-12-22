@@ -78,5 +78,24 @@ namespace Lyn.IntelliEnum
 
             return failoverValue;
         }
+
+        public static string GetDescription<TEnum>(TEnum value)
+            where TEnum : Enum
+        {
+            var enumType = typeof(TEnum);
+            var result = new Dictionary<TEnum, string>();
+
+            var memberInfo = enumType.GetMember(value.ToString()).FirstOrDefault();
+            var attrubute = memberInfo?.GetCustomAttribute<DescriptionAttribute>();
+
+            if (attrubute == null)
+            {
+                return value.ToString();
+            }
+            else
+            {
+                return attrubute.Description;
+            }
+        }
     }
 }

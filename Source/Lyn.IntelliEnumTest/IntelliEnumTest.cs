@@ -40,9 +40,19 @@ namespace Lyn.IntelliEnumTest
         {
             var var1 = IntelliEnum.IntelliEnum.GetEnumValueFromDescription("Value Test 01", TestEnum.None);
             var varn = IntelliEnum.IntelliEnum.GetEnumValueFromDescription("Unknown Value", TestEnum.None);
-            
+
             Assert.IsTrue(var1 == TestEnum.Value01);
             Assert.IsTrue(varn == TestEnum.None);
+        }
+
+        [TestMethod]
+        public void TestGetDescription()
+        {
+            var des1 = IntelliEnum.IntelliEnum.GetDescription(TestEnum.Value01);
+            var desn = IntelliEnum.IntelliEnum.GetDescription(TestEnum.None);
+
+            Assert.IsTrue(des1 == "Value Test 01");
+            Assert.IsTrue(desn == "None");
         }
     }
 }

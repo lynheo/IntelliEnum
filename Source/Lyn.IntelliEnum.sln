@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lyn.IntelliEnum", "Lyn.IntelliEnum\Lyn.IntelliEnum.csproj", "{24704D9A-5FF8-4E04-8D6C-7B13714DA47A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lyn.IntelliEnumTest", "Lyn.IntelliEnumTest\Lyn.IntelliEnumTest.csproj", "{CE09DF2C-C98C-4CA9-97C6-F0F0E2FFFC6D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{24704D9A-5FF8-4E04-8D6C-7B13714DA47A} = {24704D9A-5FF8-4E04-8D6C-7B13714DA47A}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24704D9A-5FF8-4E04-8D6C-7B13714DA47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24704D9A-5FF8-4E04-8D6C-7B13714DA47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24704D9A-5FF8-4E04-8D6C-7B13714DA47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24704D9A-5FF8-4E04-8D6C-7B13714DA47A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE09DF2C-C98C-4CA9-97C6-F0F0E2FFFC6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE09DF2C-C98C-4CA9-97C6-F0F0E2FFFC6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE09DF2C-C98C-4CA9-97C6-F0F0E2FFFC6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE09DF2C-C98C-4CA9-97C6-F0F0E2FFFC6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1980AD72-ACFD-4080-B483-763BFF4F8AC7}
+	EndGlobalSection
+EndGlobal

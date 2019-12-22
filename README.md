@@ -2,7 +2,7 @@
 Lyn.IntelliEnum is C# language useful enum helper method collection.
 
 ## Changes
-> ### v0.0.1 (12/2/2019)
+> ### v0.0.1 (12/22/2019)
 > #### Enhancements
 > - Add GetDescriptionStrings Method
 > - Add GetDescriptionStringMap Method

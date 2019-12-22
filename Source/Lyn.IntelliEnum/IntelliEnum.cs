@@ -3,25 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Reflection;
 using System.Linq;
+using EnumsNET;
 
 namespace Lyn.IntelliEnum
 {
     public static class IntelliEnum
     {
         public static IDictionary<TEnum, string> GetDescriptionStringMap<TEnum>()
-            where TEnum : Enum
+            where TEnum : struct, Enum
         {
-            var enumType = typeof(TEnum);
             var dict = new Dictionary<TEnum, string>();
 
-            foreach (var i in Enum.GetValues(enumType).Cast<TEnum>())
+            foreach (var i in Enums.GetValues<TEnum>())
             {
-                var memberInfo = enumType.GetMember(i.ToString()).FirstOrDefault();
-                var attrubute = memberInfo?.GetCustomAttribute<DescriptionAttribute>();
+                var attrubute = i.GetAttributes()?.Get<DescriptionAttribute>();
 
                 if (attrubute == null)
                 {
-                    dict.Add(i, i.ToString());
+                    dict.Add(i, i.AsString());
                 }
                 else
                 {
@@ -33,19 +32,16 @@ namespace Lyn.IntelliEnum
         }
 
         public static List<string> GetDescriptionStrings<TEnum>()
-            where TEnum : Enum
+            where TEnum : struct, Enum
         {
-            var enumType = typeof(TEnum);
             var list = new List<string>();
 
-            foreach (var i in Enum.GetValues(enumType).Cast<TEnum>())
+            foreach (var i in Enums.GetValues<TEnum>())
             {
-                var memberInfo = enumType.GetMember(i.ToString()).FirstOrDefault();
-                var attrubute = memberInfo?.GetCustomAttribute<DescriptionAttribute>();
-
+                var attrubute = i.GetAttributes()?.Get<DescriptionAttribute>();
                 if (attrubute == null)
                 {
-                    list.Add(i.ToString());
+                    list.Add(i.AsString());
                 }
                 else
                 {
@@ -56,45 +52,30 @@ namespace Lyn.IntelliEnum
             return list;
         }
 
-        public static TEnum GetEnumValueFromDescription<TEnum>(string description, TEnum failoverValue)
-           where TEnum : Enum
+        public static TEnum GetEnumValueFromDescription<TEnum>(string description, TEnum failoverValue, bool ignoreCase = false)
+           where TEnum : struct, Enum
         {
-            var enumType = typeof(TEnum);
-
-            foreach (var i in Enum.GetValues(enumType).Cast<TEnum>())
+            try
             {
-                var memberInfo = enumType.GetMember(i.ToString()).FirstOrDefault();
-                var attrubute = memberInfo?.GetCustomAttribute<DescriptionAttribute>();
-
-                if (attrubute == null)
-                {
-                    if (description == i.ToString()) return i;
-                }
-                else
-                {
-                    if (description == attrubute.Description) return i;
-                }
+                return Enums.Parse<TEnum>(description, ignoreCase, EnumFormat.Description);
             }
-
-            return failoverValue;
+            catch (ArgumentException)
+            {
+                return failoverValue;
+            }
         }
 
         public static string GetDescription<TEnum>(TEnum value)
-            where TEnum : Enum
+            where TEnum : struct, Enum
         {
-            var enumType = typeof(TEnum);
-            var result = new Dictionary<TEnum, string>();
-
-            var memberInfo = enumType.GetMember(value.ToString()).FirstOrDefault();
-            var attrubute = memberInfo?.GetCustomAttribute<DescriptionAttribute>();
-
-            if (attrubute == null)
+            var result = Enums.AsString(value, EnumFormat.Description);
+            if (result == null)
             {
-                return value.ToString();
+                return Enums.AsString(value, EnumFormat.Name)!;
             }
             else
             {
-                return attrubute.Description;
+                return Enums.AsString(value, EnumFormat.Description)!;
             }
         }
     }

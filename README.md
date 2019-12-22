@@ -1,12 +1,17 @@
 # IntelliEnum
 Lyn.IntelliEnum is C# language useful enum helper method collection.
 
+## Install via NuGet 
+------------------
+    Install-Package Lyn.IntelliEnum
+
 ## Changes
 > ### v0.0.1 / v0.0.2 (12/22/2019)
 > #### Enhancements
 > - Add GetDescriptionStrings Method
 > - Add GetDescriptionStringMap Method
 > - Add GetEnumValueFromDescription Method
+
 
 ## Lyn.IntelliEnum Demo
 ```C#
